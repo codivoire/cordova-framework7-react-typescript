@@ -1,7 +1,7 @@
 {
-  "name": "cordova-ionicnative-framework7-react-redux",
+  "name": "cordova-framework7-react-typescript",
   "version": "1.0.0",
-  "description": "Starter template for Framework7 + React + Redux + Ionic Native + Webpack + Cordova",
+  "description": "Starter template for Framework7 + React + Redux + Webpack + Cordova + Ionic Native + TypeScript",
   "license": "MIT",
   "keywords": [
     "framework7",
@@ -9,15 +9,15 @@
     "redux",
     "ionic",
     "webpack",
-    "cordova"
+    "cordova",
+    "typescript"
   ],
   "author": {
     "name": "Roland Edi",
     "email": "lambirou225@gmail.com",
     "url": "https://about.me/lambirou"
   },
-  "private": true,
-  "main": "./src/main.js",
+  "main": "./src/main.ts",
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development",
@@ -40,20 +40,31 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
     "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
-    "webpack": "^4.29.3",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.13.1",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-loader": "^3.5.4",
+    "tslint-react": "^3.6.0",
+    "typescript": "3.3.3",
+    "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-middleware": "^3.5.2",
-    "webpack-dev-server": "^3.1.14",
+    "webpack-dev-middleware": "^3.6.0",
+    "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "@ionic-native/core": "^5.0.0",
-    "@ionic-native/device": "^5.0.0",
-    "@ionic-native/dialogs": "^5.0.0",
-    "@ionic-native/screen-orientation": "^5.0.0",
-    "@ionic-native/splash-screen": "^5.0.0",
-    "@ionic-native/status-bar": "^5.0.0",
+    "@ionic-native/core": "^5.2.0",
+    "@ionic-native/device": "^5.2.0",
+    "@ionic-native/dialogs": "^5.2.0",
+    "@ionic-native/keyboard": "^5.2.0",
+    "@ionic-native/screen-orientation": "^5.2.0",
+    "@ionic-native/splash-screen": "^5.2.0",
+    "@ionic-native/status-bar": "^5.2.0",
+    "@types/node": "^11.9.6",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
     "cordova-android": "7.1.4",
     "cordova-ios": "4.5.5",
     "cordova-plugin-device": "^2.0.2",
@@ -68,8 +79,9 @@
     "framework7": "^4.0.5",
     "framework7-react": "^4.0.5",
     "prop-types": "^15.7.2",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "rxjs": "^6.4.0"
   },
   "cordova": {
     "plugins": {

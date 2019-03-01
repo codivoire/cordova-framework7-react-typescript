@@ -1,0 +1,85 @@
+import * as React from "react";
+import {
+  Page,
+  Navbar,
+  BlockTitle,
+  Block,
+  List,
+  ListItem,
+  Icon,
+  NavLeft,
+  NavRight,
+  NavTitle,
+  Link
+} from "framework7-react";
+import { Dialogs, DialogsOriginal } from "@ionic-native/dialogs";
+
+import { Platform, PlatformInterface } from "../../services/Platform";
+import * as config from "../../config.json";
+
+export interface Props {}
+
+export default class HomePage extends React.Component<Props> {
+  platform: PlatformInterface;
+  dialogs: DialogsOriginal;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.platform = Platform;
+    this.dialogs = Dialogs;
+  }
+
+  componentDidMount() {
+    this.platform.registerBackButtonAction((event: Event) => {
+      event.preventDefault();
+
+      this.dialogs
+        .confirm("Do you want to close the application ?", config.name, [
+          "Close",
+          "No"
+        ])
+        .then(index => {
+          if (index === 1) {
+            this.platform.exitApp();
+          }
+        });
+
+      return false;
+    }, 101);
+  }
+
+  render() {
+    return (
+      <Page>
+        <Navbar>
+          <NavLeft>
+            <Link panelOpen="left">
+              <Icon ion="ios-menu" />
+            </Link>
+          </NavLeft>
+          <NavTitle>{config.name}</NavTitle>
+          <NavRight>
+            <Link href="/about/">
+              <Icon ion="md-more" />
+            </Link>
+          </NavRight>
+        </Navbar>
+        <BlockTitle>Welcome to My App</BlockTitle>
+        <Block strong>
+          <p>
+            Mauris posuere sit amet metus id venenatis. Ut ante dolor, tempor
+            nec commodo rutrum, varius at sem. Nullam ac nisi non neque ornare
+            pretium. Nulla mauris mauris, consequat et elementum sit amet,
+            egestas sed orci. In hac habitasse platea dictumst.
+          </p>
+        </Block>
+        <BlockTitle>Navigation</BlockTitle>
+        <List>
+          <ListItem link="/about/" title="About" />
+          <ListItem link="/settings/" title="Settings" />
+        </List>
+      </Page>
+    );
+  }
+}
