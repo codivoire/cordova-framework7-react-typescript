@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/lambirou/cordova-framework7-react-typescript.svg?branch=master)](https://travis-ci.org/lambirou/cordova-framework7-react-typescript)
 [![dependencies Status](https://david-dm.org/lambirou/cordova-framework7-react-typescript/status.svg)](https://david-dm.org/lambirou/cordova-framework7-react-typescript)
-[![devDependencies Status](https://david-dm.org/lambirou/cordova-framework7-react-typescript/dev-status.svg)](https://david-dm.org/lambirou/cordova-framework7-react-typescript?type=dev)
+[![devDependencies Status](https://david-dm.org/lambirou/cordova-framework7-react-typescript/dev-status.svg)](https://david-dm.org/lambirou/cordova-framework7-react-typescript?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/lambirou/cordova-framework7-react-typescript.svg)](https://greenkeeper.io/)
 [![Gitter][chat-img]][chat]
 
 [chat-img]: https://img.shields.io/badge/Chat-on_gitter-teal.svg
