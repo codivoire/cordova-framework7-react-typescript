@@ -6,106 +6,102 @@ const cssnano = require("cssnano");
 const devMode = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  entry: "./src/main.tsx",
-  output: {
-    path: path.resolve(__dirname, "../www"),
-    publicPath: "/",
-    filename: "bundle.js"
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".json", ".css", ".scss"]
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?/,
-        loader: "tslint-loader",
-        enforce: "pre",
-        exclude: [/node_modules/]
-      },
-      {
-        test: /\.tsx?/,
-        loader: "ts-loader",
-        exclude: [/node_modules/]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: devMode ? "style-loader" : MiniCssExtractPlugin.loader
-          },
-          {
-            loader: "css-loader"
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              ident: "postcss",
-              plugins: () => [cssnano()]
+    entry: "./src/main.tsx",
+    output: {
+        path: path.resolve(__dirname, "../www"),
+        publicPath: "/",
+        filename: "bundle.js"
+    },
+    resolve: {
+        modules: ["src", "node_modules"],
+        extensions: [".jsx", ".js", ".tsx", ".ts", ".json", ".css", ".scss"]
+    },
+    module: {
+        rules: [{
+                test: /\.tsx?/,
+                loader: "tslint-loader",
+                enforce: "pre",
+                exclude: [/node_modules/]
+            },
+            {
+                test: /\.tsx?/,
+                loader: "ts-loader",
+                exclude: [/node_modules/]
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                        loader: devMode ? "style-loader" : MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            ident: "postcss",
+                            plugins: () => [cssnano()]
+                        }
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif|apng|webp)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        outputPath: "img",
+                        name: "[name].[ext]",
+                        useRelativePath: true
+                    }
+                }
+            },
+            {
+                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        outputPath: "fonts",
+                        name: "[name].[ext]",
+                        useRelativePath: true
+                    }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        outputPath: "css",
+                        name: "[name].[ext]",
+                        useRelativePath: true
+                    }
+                }
             }
-          },
-          {
-            loader: "sass-loader"
-          }
         ]
-      },
-      {
-        test: /\.(png|jpg|gif|apng|webp)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            outputPath: "img",
-            name: "[name].[ext]",
-            useRelativePath: true
-          }
-        }
-      },
-      {
-        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            outputPath: "fonts",
-            name: "[name].[ext]",
-            useRelativePath: true
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            outputPath: "css",
-            name: "[name].[ext]",
-            useRelativePath: true
-          }
-        }
-      }
+    },
+    devServer: {
+        contentBase: path.join(__dirname, "../www"),
+        compress: true
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "../www/bundle.css"
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        }),
+        new BrowserSyncPlugin({
+            host: "localhost",
+            port: 3000,
+            proxy: "http://localhost:8080/"
+        }, {
+            reload: false
+        })
     ]
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "../www"),
-    compress: true
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "../www/bundle.css"
-    }),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new BrowserSyncPlugin(
-      {
-        host: "localhost",
-        port: 3000,
-        proxy: "http://localhost:8080/"
-      },
-      {
-        reload: false
-      }
-    )
-  ]
 };

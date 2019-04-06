@@ -3,7 +3,7 @@ import AboutPage from "./components/pages/AboutPage";
 import SettingsPage from "./components/pages/SettingsPage";
 import NotFoundPage from "./components/pages/NotFoundPage";
 
-export default [
+const routes: any = [
   {
     path: "/",
     component: HomePage
@@ -21,3 +21,5 @@ export default [
     component: NotFoundPage
   }
 ];
+
+export default routes;

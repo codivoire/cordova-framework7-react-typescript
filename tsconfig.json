@@ -7,6 +7,8 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
